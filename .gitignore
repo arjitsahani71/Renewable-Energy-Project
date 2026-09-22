@@ -6,4 +6,6 @@ env/
 .idea/
 .vscode/
 *.log
-models/
+
+models/*
+!models/solar_power_model.pkl
