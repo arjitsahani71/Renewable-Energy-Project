@@ -1,0 +1,925 @@
+/* =========================================================
+   SOLAR ENERGY MONITORING SYSTEM
+   Clean Dashboard
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: "Inter", Arial, sans-serif;
+
+    background: #f4f7fb;
+
+    color: #172033;
+
+    min-height: 100vh;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   MAIN DASHBOARD
+========================================================= */
+
+.dashboard {
+    width: 100%;
+
+    max-width: 1500px;
+
+    margin: auto;
+
+    padding: 0 30px 40px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+    min-height: 95px;
+
+    margin: 0 -30px;
+
+    padding: 20px 30px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e5e9f0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+}
+
+
+.header-left {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.logo {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #fff7d6;
+
+    border-radius: 14px;
+
+    font-size: 28px;
+}
+
+
+.header h1 {
+    font-size: 28px;
+
+    font-weight: 800;
+
+    letter-spacing: -0.7px;
+}
+
+
+.header p {
+    color: #7a8495;
+
+    font-size: 13px;
+
+    margin-top: 3px;
+}
+
+
+.connection-status {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 9px 14px;
+
+    background: #ecfdf3;
+
+    border: 1px solid #c8f0d8;
+
+    border-radius: 30px;
+
+    color: #16834b;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+
+    background: #20b968;
+
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   DATE CONTROL
+========================================================= */
+
+.date-control {
+    margin-top: 28px;
+
+    padding: 23px 25px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e9f0;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 4px 15px rgba(23, 32, 51, 0.045);
+}
+
+
+.date-control-content {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+
+.title-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+}
+
+
+.date-control h2 {
+    font-size: 19px;
+
+    font-weight: 750;
+}
+
+
+.date-control p {
+    color: #7a8495;
+
+    font-size: 13px;
+
+    margin-top: 5px;
+}
+
+
+.data-range {
+    display: block;
+
+    margin-top: 7px;
+
+    color: #9aa3b0;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   MODE BADGES
+========================================================= */
+
+.mode-badge {
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+}
+
+
+.mode-badge.forecast {
+    background: #fff3d8;
+
+    color: #a66b00;
+
+    border: 1px solid #f6d996;
+}
+
+
+.mode-badge.historical {
+    background: #eaf8f0;
+
+    color: #16834b;
+
+    border: 1px solid #c9ebd6;
+}
+
+
+/* =========================================================
+   DATE INPUT
+========================================================= */
+
+.date-selector-container {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.date-selector-container label {
+    font-size: 13px;
+
+    color: #596273;
+
+    font-weight: 600;
+}
+
+
+#dateSelector {
+    min-width: 165px;
+
+    padding: 11px 13px;
+
+    background: #ffffff;
+
+    border: 1px solid #d8dee8;
+
+    border-radius: 9px;
+
+    color: #172033;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+
+#dateSelector:focus {
+    border-color: #4f8cff;
+
+    box-shadow:
+        0 0 0 3px rgba(79, 140, 255, 0.12);
+}
+
+
+/* =========================================================
+   DATE INFORMATION
+========================================================= */
+
+.date-information {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin: 14px 3px 20px;
+
+    color: #7c8797;
+
+    font-size: 12px;
+}
+
+
+#currentDate {
+    font-weight: 600;
+
+    color: #536071;
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+.stat-card {
+    min-height: 160px;
+
+    padding: 21px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e9f0;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 4px 15px rgba(23, 32, 51, 0.045);
+
+    transition: 0.2s ease;
+}
+
+
+.stat-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 9px 25px rgba(23, 32, 51, 0.08);
+}
+
+
+.stat-card-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 13px;
+}
+
+
+.stat-title {
+    color: #5e6878;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.stat-icon {
+    width: 33px;
+    height: 33px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #f5f7fa;
+
+    border-radius: 9px;
+
+    font-size: 17px;
+}
+
+
+.stat-value {
+    color: #172033;
+
+    font-size: 25px;
+
+    font-weight: 800;
+
+    line-height: 1.2;
+}
+
+
+.stat-description {
+    margin-top: 8px;
+
+    color: #8992a1;
+
+    font-size: 11px;
+}
+
+
+.status-card {
+    border-top: 3px solid #25b975;
+}
+
+
+.alert-card {
+    border-top: 3px solid #f0a522;
+}
+
+
+.status-normal {
+    color: #18a15d;
+}
+
+
+.status-forecast {
+    color: #b67b00;
+}
+
+
+/* =========================================================
+   CHART
+========================================================= */
+
+.chart-section {
+    margin-top: 24px;
+
+    padding: 24px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e9f0;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 4px 15px rgba(23, 32, 51, 0.045);
+}
+
+
+.section-header {
+    margin-bottom: 20px;
+}
+
+
+.section-header h2 {
+    font-size: 19px;
+
+    font-weight: 750;
+}
+
+
+.section-header p {
+    margin-top: 4px;
+
+    color: #8992a1;
+
+    font-size: 12px;
+}
+
+
+.chart-container {
+    position: relative;
+
+    width: 100%;
+
+    height: 420px;
+}
+
+
+#powerChart {
+    width: 100% !important;
+
+    height: 100% !important;
+}
+
+
+/* =========================================================
+   RECOMMENDATION
+========================================================= */
+
+.recommendation-section {
+    margin-top: 24px;
+
+    padding: 23px 24px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e9f0;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 4px 15px rgba(23, 32, 51, 0.045);
+}
+
+
+.recommendation-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    margin-bottom: 15px;
+}
+
+
+.recommendation-icon {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #fff6d7;
+
+    border-radius: 12px;
+
+    font-size: 21px;
+}
+
+
+.recommendation-header h2 {
+    font-size: 17px;
+
+    font-weight: 700;
+}
+
+
+.recommendation-header p {
+    margin-top: 2px;
+
+    color: #8a93a2;
+
+    font-size: 11px;
+}
+
+
+.recommendation-content {
+    padding: 15px 17px;
+
+    background: #f7f9fc;
+
+    border-left: 3px solid #4f8cff;
+
+    border-radius: 8px;
+
+    color: #536071;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   ALERTS
+========================================================= */
+
+.alerts-section {
+    margin-top: 24px;
+
+    padding: 22px 24px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e9f0;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 4px 15px rgba(23, 32, 51, 0.045);
+}
+
+
+.alert-item {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 14px 16px;
+
+    background: #f8fafc;
+
+    border: 1px solid #edf0f4;
+
+    border-radius: 9px;
+}
+
+
+.alert-item strong {
+    font-size: 13px;
+
+    color: #344054;
+}
+
+
+.alert-item span {
+    font-size: 12px;
+
+    color: #7d8796;
+}
+
+
+.forecast-alert {
+    background: #fffaf0;
+
+    border-color: #f4dfad;
+}
+
+
+.warning-alert {
+    background: #fff7f7;
+
+    border-color: #f0caca;
+}
+
+
+.normal-alert {
+    background: #f3fbf6;
+
+    border-color: #d2eddb;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 30px;
+
+    padding: 22px 5px;
+
+    border-top: 1px solid #e1e5eb;
+
+    color: #8b95a5;
+
+    font-size: 11px;
+}
+
+
+.footer div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.footer strong {
+    color: #596273;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: #f1f3f6;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #c5ccd6;
+
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .dashboard {
+        padding-left: 20px;
+
+        padding-right: 20px;
+    }
+
+
+    .header {
+        margin-left: -20px;
+
+        margin-right: -20px;
+
+        padding-left: 20px;
+
+        padding-right: 20px;
+    }
+
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .dashboard {
+        padding-left: 15px;
+
+        padding-right: 15px;
+    }
+
+
+    .header {
+        margin-left: -15px;
+
+        margin-right: -15px;
+
+        padding-left: 15px;
+
+        padding-right: 15px;
+    }
+
+
+    .header h1 {
+        font-size: 21px;
+    }
+
+
+    .header p {
+        font-size: 11px;
+    }
+
+
+    .header-right {
+        display: none;
+    }
+
+
+    .date-control-content {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .date-selector-container {
+        width: 100%;
+
+        justify-content: space-between;
+    }
+
+
+    #dateSelector {
+        flex: 1;
+
+        min-width: 0;
+    }
+
+
+    .date-information {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 5px;
+    }
+
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .chart-container {
+        height: 330px;
+    }
+
+
+    .footer {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .header {
+        position: relative;
+    }
+
+
+    .header h1 {
+        font-size: 18px;
+    }
+
+
+    .header p {
+        display: none;
+    }
+
+
+    .logo {
+        width: 43px;
+
+        height: 43px;
+
+        font-size: 22px;
+    }
+
+
+    .date-selector-container {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    #dateSelector {
+        width: 100%;
+    }
+
+
+    .stat-card {
+        min-height: 145px;
+
+        padding: 18px;
+    }
+
+
+    .stat-value {
+        font-size: 22px;
+    }
+
+
+    .chart-section,
+    .recommendation-section,
+    .alerts-section {
+        padding: 18px;
+    }
+
+
+    .chart-container {
+        height: 280px;
+    }
+
+
+    .alert-item {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 6px;
+    }
+
+}

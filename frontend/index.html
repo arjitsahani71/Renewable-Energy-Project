@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Solar Energy Monitor
+    </title>
+
+
+    <!-- Google Font -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Dashboard CSS -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <!-- Chart.js -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js"
+    ></script>
+
+</head>
+
+
+<body>
+
+
+<div class="dashboard">
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="header">
+
+
+        <div class="header-left">
+
+
+            <div class="logo">
+                ☀️
+            </div>
+
+
+            <div>
+
+                <h1>
+                    Solar Energy Monitor
+                </h1>
+
+                <p>
+                    AI-Powered Renewable Energy Monitoring & Optimization
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="header-right">
+
+
+            <div class="connection-status">
+
+                <span class="status-dot"></span>
+
+                <span>
+                    Online
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+    </header>
+
+
+    <!-- =====================================================
+         DATE SELECTION
+    ====================================================== -->
+
+    <section class="date-control">
+
+
+        <div class="date-control-content">
+
+
+            <div>
+
+                <div class="title-row">
+
+                    <h2>
+                        Date & Forecast
+                    </h2>
+
+
+                    <span
+                        id="modeBadge"
+                        class="mode-badge forecast"
+                    >
+                        AI FORECAST
+                    </span>
+
+                </div>
+
+
+                <p>
+                    Select any date for historical analysis or AI forecasting
+                </p>
+
+
+                <small
+                    id="dataRange"
+                    class="data-range"
+                >
+                    Historical data range
+                </small>
+
+            </div>
+
+
+            <div class="date-selector-container">
+
+
+                <label for="dateSelector">
+                    Select Date
+                </label>
+
+
+                <input
+                    type="date"
+                    id="dateSelector"
+                >
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         DATE INFORMATION
+    ====================================================== -->
+
+    <div class="date-information">
+
+
+        <span id="currentDate">
+            Selected Date: Loading...
+        </span>
+
+
+        <span id="lastUpdated">
+            Loading...
+        </span>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         STAT CARDS
+    ====================================================== -->
+
+    <section class="stats-grid">
+
+
+        <!-- CURRENT / ACTUAL POWER -->
+
+        <div class="stat-card">
+
+
+            <div class="stat-card-header">
+
+                <span class="stat-title">
+                    Actual Power
+                </span>
+
+                <span class="stat-icon">
+                    ⚡
+                </span>
+
+            </div>
+
+
+            <div
+                class="stat-value"
+                id="currentPower"
+            >
+                --
+            </div>
+
+
+            <div class="stat-description">
+                Actual AC power generation
+            </div>
+
+
+        </div>
+
+
+        <!-- AI PREDICTION -->
+
+        <div class="stat-card">
+
+
+            <div class="stat-card-header">
+
+                <span class="stat-title">
+                    AI Predicted Power
+                </span>
+
+                <span class="stat-icon">
+                    🤖
+                </span>
+
+            </div>
+
+
+            <div
+                class="stat-value"
+                id="predictedPower"
+            >
+                --
+            </div>
+
+
+            <div class="stat-description">
+                Machine learning power prediction
+            </div>
+
+
+        </div>
+
+
+        <!-- IRRADIATION -->
+
+        <div class="stat-card">
+
+
+            <div class="stat-card-header">
+
+                <span class="stat-title">
+                    Solar Irradiation
+                </span>
+
+                <span class="stat-icon">
+                    ☀️
+                </span>
+
+            </div>
+
+
+            <div
+                class="stat-value"
+                id="irradiation"
+            >
+                --
+            </div>
+
+
+            <div class="stat-description">
+                Solar radiation intensity
+            </div>
+
+
+        </div>
+
+
+        <!-- TEMPERATURE -->
+
+        <div class="stat-card">
+
+
+            <div class="stat-card-header">
+
+                <span class="stat-title">
+                    Temperature
+                </span>
+
+                <span class="stat-icon">
+                    🌡️
+                </span>
+
+            </div>
+
+
+            <div
+                class="stat-value"
+                id="temperature"
+            >
+                --
+            </div>
+
+
+            <div class="stat-description">
+                Ambient temperature
+            </div>
+
+
+        </div>
+
+
+        <!-- DAILY ENERGY -->
+
+        <div class="stat-card">
+
+
+            <div class="stat-card-header">
+
+                <span class="stat-title">
+                    Expected Daily Energy
+                </span>
+
+                <span class="stat-icon">
+                    🔋
+                </span>
+
+            </div>
+
+
+            <div
+                class="stat-value"
+                id="dailyYield"
+            >
+                --
+            </div>
+
+
+            <div class="stat-description">
+                Estimated daily energy generation
+            </div>
+
+
+        </div>
+
+
+        <!-- EFFICIENCY -->
+
+        <div class="stat-card">
+
+
+            <div class="stat-card-header">
+
+                <span class="stat-title">
+                    System Efficiency
+                </span>
+
+                <span class="stat-icon">
+                    📊
+                </span>
+
+            </div>
+
+
+            <div
+                class="stat-value"
+                id="efficiency"
+            >
+                --
+            </div>
+
+
+            <div class="stat-description">
+                Historical efficiency / forecast mode
+            </div>
+
+
+        </div>
+
+
+        <!-- SYSTEM STATUS -->
+
+        <div class="stat-card status-card">
+
+
+            <div class="stat-card-header">
+
+                <span class="stat-title">
+                    System Status
+                </span>
+
+                <span class="stat-icon">
+                    🟢
+                </span>
+
+            </div>
+
+
+            <div
+                class="stat-value status-normal"
+                id="systemStatus"
+            >
+                Loading...
+            </div>
+
+
+            <div class="stat-description">
+                Historical condition or forecast
+            </div>
+
+
+        </div>
+
+
+        <!-- ALERTS -->
+
+        <div class="stat-card alert-card">
+
+
+            <div class="stat-card-header">
+
+                <span class="stat-title">
+                    Alerts
+                </span>
+
+                <span class="stat-icon">
+                    ⚠️
+                </span>
+
+            </div>
+
+
+            <div
+                class="stat-value"
+                id="alertCount"
+            >
+                0
+            </div>
+
+
+            <div class="stat-description">
+                Performance anomalies / forecast information
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         POWER CHART
+    ====================================================== -->
+
+    <section class="chart-section">
+
+
+        <div class="section-header">
+
+
+            <div>
+
+                <h2>
+                    Power Generation Forecast
+                </h2>
+
+
+                <p>
+                    Historical actual power and AI future forecast
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="chart-container">
+
+            <canvas
+                id="powerChart"
+            ></canvas>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         AI RECOMMENDATION
+    ====================================================== -->
+
+    <section class="recommendation-section">
+
+
+        <div class="recommendation-header">
+
+
+            <div class="recommendation-icon">
+                🤖
+            </div>
+
+
+            <div>
+
+                <h2>
+                    AI Recommendation
+                </h2>
+
+
+                <p>
+                    Intelligent solar generation analysis
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <div
+            class="recommendation-content"
+            id="recommendation"
+        >
+            Loading AI recommendation...
+        </div>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         ALERTS
+    ====================================================== -->
+
+    <section class="alerts-section">
+
+
+        <div class="section-header">
+
+
+            <div>
+
+                <h2>
+                    System Information
+                </h2>
+
+
+                <p>
+                    Historical monitoring and future forecast information
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <div id="alerts">
+
+
+            <div class="alert-item">
+
+                <strong>
+                    Loading...
+                </strong>
+
+                <span>
+                    Checking system status
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+
+        <div>
+
+            <strong>
+                Solar Energy Monitoring System
+            </strong>
+
+            <span>
+                AI & Cloud Computing Project
+            </span>
+
+        </div>
+
+
+        <div>
+
+            <span>
+                Historical Analysis + Future AI Forecasting
+            </span>
+
+        </div>
+
+
+    </footer>
+
+
+</div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script
+    src="script.js"
+></script>
+
+
+</body>
+
+</html>
